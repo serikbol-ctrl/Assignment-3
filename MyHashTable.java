@@ -1,6 +1,5 @@
 class MyHashTable<K, V> {
 
-    // Node class
     private class HashNode<K, V> {
         private K key;
         private V value;
@@ -21,31 +20,26 @@ class MyHashTable<K, V> {
     private int M = 11; // bucket саны
     private int size;
 
-    // Default constructor
     public MyHashTable() {
         chainArray = new HashNode[M];
         size = 0;
     }
 
-    // Custom size constructor
     public MyHashTable(int M) {
         this.M = M;
         chainArray = new HashNode[M];
         size = 0;
     }
 
-    // Hash function
     private int hash(K key) {
         return Math.abs(key.hashCode()) % M;
     }
 
-    // Put method
     public void put(K key, V value) {
         int index = hash(key);
 
         HashNode<K, V> head = chainArray[index];
 
-        // Егер key бар болса → update
         while (head != null) {
             if (head.key.equals(key)) {
                 head.value = value;
@@ -54,7 +48,6 @@ class MyHashTable<K, V> {
             head = head.next;
         }
 
-        // Жаңа node қосу (head-қа)
         size++;
         head = chainArray[index];
         HashNode<K, V> newNode = new HashNode<>(key, value);
@@ -62,7 +55,6 @@ class MyHashTable<K, V> {
         chainArray[index] = newNode;
     }
 
-    // Get method
     public V get(K key) {
         int index = hash(key);
         HashNode<K, V> head = chainArray[index];
@@ -77,7 +69,6 @@ class MyHashTable<K, V> {
         return null;
     }
 
-    // Remove method
     public V remove(K key) {
         int index = hash(key);
         HashNode<K, V> head = chainArray[index];
@@ -103,7 +94,6 @@ class MyHashTable<K, V> {
         return null;
     }
 
-    // Contains value
     public boolean contains(V value) {
         for (int i = 0; i < M; i++) {
             HashNode<K, V> head = chainArray[i];
@@ -118,7 +108,6 @@ class MyHashTable<K, V> {
         return false;
     }
 
-    // Get key by value
     public K getKey(V value) {
         for (int i = 0; i < M; i++) {
             HashNode<K, V> head = chainArray[i];
@@ -133,7 +122,6 @@ class MyHashTable<K, V> {
         return null;
     }
 
-    // Bucket sizes (for testing)
     public void printBucketSizes() {
         for (int i = 0; i < M; i++) {
             int count = 0;

@@ -7,7 +7,7 @@ class MyTestingClass {
 
     @Override
     public int hashCode() {
-        return id * 31 + 7; // custom hash
+        return id * 31 + 7;
     }
 
     @Override
