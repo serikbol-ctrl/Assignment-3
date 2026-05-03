@@ -9,7 +9,7 @@ public class Main {
 
         table.printBucketSizes();
 
-        System.out.println("Get key 50: " + table.get(new MyTestingClass(50)));
+        System.out.println("Get value for key 50: " + table.get(new MyTestingClass(50)));
         System.out.println("Contains value 9999: " + table.contains(9999));
     }
 }
