@@ -16,7 +16,6 @@ public class BST<K extends Comparable<K>, V> {
         }
     }
 
-    // ---------------- PUT ----------------
     public void put(K key, V val) {
         root = put(root, key, val);
     }
@@ -40,7 +39,6 @@ public class BST<K extends Comparable<K>, V> {
         return node;
     }
 
-    // ---------------- GET ----------------
     public V get(K key) {
         Node node = get(root, key);
         return node == null ? null : node.val;
@@ -56,7 +54,6 @@ public class BST<K extends Comparable<K>, V> {
         else return node;
     }
 
-    // ---------------- DELETE ----------------
     public void delete(K key) {
         root = delete(root, key);
     }
@@ -73,11 +70,9 @@ public class BST<K extends Comparable<K>, V> {
         } else {
             size--;
 
-            // 1 бала немесе жоқ
             if (node.left == null) return node.right;
             if (node.right == null) return node.left;
 
-            // 2 бала болса (min оң жақтан аламыз)
             Node temp = node;
             node = min(temp.right);
             node.right = deleteMin(temp.right);
@@ -100,12 +95,10 @@ public class BST<K extends Comparable<K>, V> {
         return node;
     }
 
-    // ---------------- SIZE ----------------
     public int size() {
         return size;
     }
 
-    // ---------------- ITERATOR (IN-ORDER) ----------------
     public Iterable<Entry<K, V>> iterator() {
         List<Entry<K, V>> list = new ArrayList<>();
         inorder(root, list);
@@ -120,7 +113,6 @@ public class BST<K extends Comparable<K>, V> {
         inorder(node.right, list);
     }
 
-    // Entry class (key + value бірге беру үшін)
     public static class Entry<K, V> {
         private K key;
         private V value;
