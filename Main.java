@@ -1,19 +1,24 @@
 public class Main {
     public static void main(String[] args) {
 
-        MyHashTable<MyTestingClass, Integer> table = new MyHashTable<>(11);
+        BST<Integer, String> tree = new BST<>();
 
-        // 10000 элемент қосу
-        for (int i = 0; i < 10000; i++) {
-            table.put(new MyTestingClass(i), i);
+        tree.put(5, "A");
+        tree.put(3, "B");
+        tree.put(7, "C");
+        tree.put(2, "D");
+        tree.put(4, "E");
+
+        System.out.println("Get 3: " + tree.get(3));
+
+        tree.delete(3);
+
+        // Iterator (in-order)
+        for (BST.Entry<Integer, String> elem : tree.iterator()) {
+            System.out.println("key is " + elem.getKey() +
+                    " and value is " + elem.getValue());
         }
 
-        // Bucket-тарды шығару
-        table.printBucketSizes();
-
-        // Қосымша тексеру
-        System.out.println("Get key 50: " + table.get(new MyTestingClass(50)));
-        System.out.println("Contains value 9999: " + table.contains(9999));
+        System.out.println("Size: " + tree.size());
     }
 }
-
